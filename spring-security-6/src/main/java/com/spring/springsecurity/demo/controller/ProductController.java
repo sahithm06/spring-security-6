@@ -16,7 +16,7 @@ public class ProductController {
                            double price){}
     List<Product> products = new ArrayList<>(
             List.of(new Product(1, "pixel6a",599.99),
-                    new Product(1 ,"Mac pro", 1099.99)
+                    new Product(2 ,"Mac pro", 1099.99)
             )
     );
 
