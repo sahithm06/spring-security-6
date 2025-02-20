@@ -18,11 +18,14 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final AuthenticationManager authenticationManager;
     private Authentication authenticate;
+    private JwtService jwtService;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, AuthenticationManager authenticationManager) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder,
+                       AuthenticationManager authenticationManager, JwtService jwtService) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
 
 
@@ -43,7 +46,7 @@ public class UserService {
         //Here, I have authenticated the values using username
         // and password.
         if(authenticate.isAuthenticated())
-            return "instead of success, sending token";
+            return jwtService.generateToken(user);
         return "Failed";
     }
 }
